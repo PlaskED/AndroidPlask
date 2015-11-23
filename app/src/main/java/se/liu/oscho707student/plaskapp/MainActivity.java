@@ -13,8 +13,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fm_t = fm.beginTransaction();
-        //fm_t.add(R.id.mainView, new ListFragment()); //huvudmenyfragment
-        //fm_t.commit();
+        fm_t.add(R.id.mainView, new MainFragment());
+        fm_t.commit();
 
     }
 
