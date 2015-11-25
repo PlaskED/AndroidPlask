@@ -4,6 +4,7 @@
     android:focusableInTouchMode="true"
     android:id="@+id/mainView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#3f3f3f">
 </FrameLayout>
 <!-- From: file:/home/oscho707/TDP028/tdp028-projekt/AndroidPlask/app/src/main/res/layout/activity_main.xml -->

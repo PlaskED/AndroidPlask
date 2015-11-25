@@ -4,5 +4,6 @@
     android:focusableInTouchMode="true"
     android:id="@+id/mainView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#3f3f3f">
 </FrameLayout>
