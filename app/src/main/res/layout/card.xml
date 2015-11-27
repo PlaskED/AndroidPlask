@@ -9,7 +9,7 @@
         android:id="@+id/cardText"
         android:textSize="40sp"
         android:textColor="@android:color/white"
-        android:background="#E339"
+        android:background="#ee33994e"
         android:gravity="center"
         tools:text="null"
         android:layout_width="match_parent"
