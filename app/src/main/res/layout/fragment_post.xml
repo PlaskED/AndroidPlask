@@ -1,10 +1,44 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="se.liu.oscho707student.plaskapp.PostFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        tools:context="se.liu.oscho707student.plaskapp.PostFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/postField"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textColor="#FFF"
+            android:textColorHint="#FFF"
+            android:hint="@string/post_text"
+            android:backgroundTintMode="screen"
+            android:enabled="true"
+            android:textSize="30sp"
+            android:paddingBottom="10sp"
+            android:background="#ee33994e"
+            android:autoText="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/post_button"
+            android:id="@+id/postButton"
+            android:enabled="true"
+            android:textColor="@android:color/white"
+            android:background="#ee33994e"
+            android:layout_gravity="center_vertical"
+            android:layout_below="@+id/postField"
+            android:layout_marginTop="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignEnd="@+id/postField" />
+
+</RelativeLayout>

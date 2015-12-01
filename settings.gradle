@@ -1,1 +1,1 @@
-include ':app', ':volley', ':library', ':swipecards'
+include ':app', ':volley', ':library'
