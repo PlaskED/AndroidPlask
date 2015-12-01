@@ -12,9 +12,9 @@ import java.util.ArrayList;
 /**
  * Created by oscho707 on 11/18/15.
  */
-public class PostObjectAdapter extends ArrayAdapter {
-    public PostObjectAdapter(Context context, ArrayList<PostObject> postArr) {
-        super(context, 0, postArr);
+public class PostObjectAdapter extends ArrayAdapter<PostObject> {
+    public PostObjectAdapter(Context context) {
+        super(context, R.layout.card);
     }
 
     @Override

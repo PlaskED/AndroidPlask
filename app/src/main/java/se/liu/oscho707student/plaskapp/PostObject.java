@@ -14,9 +14,9 @@ public class PostObject {
 
         try {
             this.text = this.json.getString("text");
-            this.likes = this.json.getString("likes");
-            this.xpos = this.json.getString("xpos");
-            this.ypos = this.json.getString("ypos");
+            this.likes = "0";//this.json.getString("likes");
+            this.xpos = "0";//this.json.getString("xpos");
+            this.ypos = "0";//this.json.getString("ypos");
         } catch (JSONException e) {
             Log.d("Error, JSON", e.toString());
         }
