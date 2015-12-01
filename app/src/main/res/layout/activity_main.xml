@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/plask_white">
 
     <FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,9 +18,10 @@
 
     <ListView
         android:id="@+id/navList"
-        android:layout_width="220dp"
+        android:layout_width="250dp"
         android:layout_height="match_parent"
         android:layout_gravity="left|start"
-        android:background="#ffeeeeee"/>
+        android:background="@color/plask_status"
+        android:theme="@style/PlaskTheme" />
 
 </android.support.v4.widget.DrawerLayout>

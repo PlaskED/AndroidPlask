@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_dark_material_dark">#00bb28</color>
+    <color name="primary_material_light">#efefef</color>
+    <color name="plask_green">#00bb28</color>
+    <color name="plask_red">#636363</color>
+    <color name="primary_material_dark">#00bb28</color>
+    <color name="plask_white">#f8f8f8</color>
+    <color name="plask_navcolor">#00bb28</color>
+    <color name="windowBackground">#0f64a8</color>
+    <color name="accent_material_dark">#00bb28</color>
+    <color name="black">#0f64a8</color>
+    <color name="statusBarColor">#0f64a8</color>
+    <color name="foreground_material_dark">#636363</color>
+    <color name="plask_blue">#0f64a8</color>
+    <color name="plask_black">#161616</color>
+    <color name="plask_status">#3981ba</color>
+</resources>

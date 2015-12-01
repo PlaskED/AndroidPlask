@@ -29,12 +29,21 @@
     <color name="abc_search_url_text_normal">#7fa87f</color>
     <color name="abc_search_url_text_pressed">@android:color/black</color>
     <color name="abc_search_url_text_selected">@android:color/black</color>
-    <color name="accent_material_dark">@color/material_deep_teal_200</color>
+    <!-- From: file:/home/oscho707/TDP028/tdp028-projekt/AndroidPlask/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="accent_material_dark">#00bb28</color>
+    <!-- From: file:/home/oscho707/TDP028/tdp028-projekt/AndroidPlask/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
+    <eat-comment/>
     <color name="accent_material_light">@color/material_deep_teal_500</color>
     <color name="background_floating_material_dark">@color/material_grey_800</color>
     <color name="background_floating_material_light">@android:color/white</color>
     <color name="background_material_dark">@color/material_grey_850</color>
     <color name="background_material_light">@color/material_grey_50</color>
+    <!-- From: file:/home/oscho707/TDP028/tdp028-projekt/AndroidPlask/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="black">#0f64a8</color>
+    <!-- From: file:/home/oscho707/TDP028/tdp028-projekt/AndroidPlask/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
+    <eat-comment/>
     <color name="bright_foreground_disabled_material_dark">#80ffffff</color>
     <color name="bright_foreground_disabled_material_light">#80000000</color>
     <color name="bright_foreground_inverse_material_dark">@color/bright_foreground_material_light</color>
@@ -78,7 +87,11 @@
     <color name="dim_foreground_disabled_material_light">#80323232</color>
     <color name="dim_foreground_material_dark">#ffbebebe</color>
     <color name="dim_foreground_material_light">#ff323232</color>
-    <color name="foreground_material_dark">@android:color/white</color>
+    <!-- From: file:/home/oscho707/TDP028/tdp028-projekt/AndroidPlask/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="foreground_material_dark">#636363</color>
+    <!-- From: file:/home/oscho707/TDP028/tdp028-projekt/AndroidPlask/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
+    <eat-comment/>
     <color name="foreground_material_light">@android:color/black</color>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
@@ -141,10 +154,25 @@
     <color name="material_grey_800">#ff424242</color>
     <color name="material_grey_850">#ff303030</color>
     <color name="material_grey_900">#ff212121</color>
-    <color name="primary_dark_material_dark">@android:color/black</color>
+    <!-- From: file:/home/oscho707/TDP028/tdp028-projekt/AndroidPlask/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="plask_black">#161616</color>
+    <color name="plask_blue">#0f64a8</color>
+    <color name="plask_green">#00bb28</color>
+    <color name="plask_navcolor">#00bb28</color>
+    <color name="plask_red">#636363</color>
+    <color name="plask_status">#3981ba</color>
+    <color name="plask_white">#f8f8f8</color>
+    <color name="primary_dark_material_dark">#00bb28</color>
+    <!-- From: file:/home/oscho707/TDP028/tdp028-projekt/AndroidPlask/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
+    <eat-comment/>
     <color name="primary_dark_material_light">@color/material_grey_600</color>
-    <color name="primary_material_dark">@color/material_grey_900</color>
-    <color name="primary_material_light">@color/material_grey_100</color>
+    <!-- From: file:/home/oscho707/TDP028/tdp028-projekt/AndroidPlask/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="primary_material_dark">#00bb28</color>
+    <color name="primary_material_light">#efefef</color>
+    <!-- From: file:/home/oscho707/TDP028/tdp028-projekt/AndroidPlask/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
+    <eat-comment/>
     <color name="primary_text_default_material_dark">#ffffffff</color>
     <color name="primary_text_default_material_light">#de000000</color>
     <color name="primary_text_disabled_material_dark">#4Dffffff</color>
@@ -155,6 +183,11 @@
     <color name="secondary_text_default_material_light">#8a000000</color>
     <color name="secondary_text_disabled_material_dark">#36ffffff</color>
     <color name="secondary_text_disabled_material_light">#24000000</color>
+    <!-- From: file:/home/oscho707/TDP028/tdp028-projekt/AndroidPlask/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="statusBarColor">#0f64a8</color>
+    <!-- From: file:/home/oscho707/TDP028/tdp028-projekt/AndroidPlask/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
+    <eat-comment/>
     <color name="switch_thumb_disabled_material_dark">#ff616161</color>
     <color name="switch_thumb_disabled_material_light">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
@@ -174,6 +207,9 @@
     <color name="wallet_hint_foreground_holo_light">#808080</color>
     <color name="wallet_holo_blue_light">#ff33b5e5</color>
     <color name="wallet_link_text_light">#0000ee</color>
+    <!-- From: file:/home/oscho707/TDP028/tdp028-projekt/AndroidPlask/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="windowBackground">#0f64a8</color>
     <declare-styleable name="ActionBar"><attr name="navigationMode"><enum name="normal" value="0"/><enum name="listMode" value="1"/><enum name="tabMode" value="2"/></attr><attr name="displayOptions"><flag name="none" value="0"/><flag name="useLogo" value="0x1"/><flag name="showHome" value="0x2"/><flag name="homeAsUp" value="0x4"/><flag name="showTitle" value="0x8"/><flag name="showCustom" value="0x10"/><flag name="disableHome" value="0x20"/></attr><attr name="title"/><attr format="string" name="subtitle"/><attr format="reference" name="titleTextStyle"/><attr format="reference" name="subtitleTextStyle"/><attr format="reference" name="icon"/><attr format="reference" name="logo"/><attr format="reference" name="divider"/><attr format="reference" name="background"/><attr format="reference|color" name="backgroundStacked"/><attr format="reference|color" name="backgroundSplit"/><attr format="reference" name="customNavigationLayout"/><attr name="height"/><attr format="reference" name="homeLayout"/><attr format="reference" name="progressBarStyle"/><attr format="reference" name="indeterminateProgressStyle"/><attr format="dimension" name="progressBarPadding"/><attr name="homeAsUpIndicator"/><attr format="dimension" name="itemPadding"/><attr format="boolean" name="hideOnContentScroll"/><attr format="dimension" name="contentInsetStart"/><attr format="dimension" name="contentInsetEnd"/><attr format="dimension" name="contentInsetLeft"/><attr format="dimension" name="contentInsetRight"/><attr format="dimension" name="elevation"/><attr format="reference" name="popupTheme"/></declare-styleable>
     <declare-styleable name="ActionBarLayout"><attr name="android:layout_gravity"/></declare-styleable>
     <declare-styleable name="ActionMenuItemView"><attr name="android:minWidth"/></declare-styleable>
@@ -793,13 +829,6 @@
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>
     <style name="Animation.AppCompat.DropDownUp" parent="Base.Animation.AppCompat.DropDownUp"/>
-    <!-- From: file:/home/oscho707/TDP028/tdp028-projekt/AndroidPlask/app/src/main/res/values/styles.xml -->
-    <eat-comment/>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-    </style>
-    <!-- From: file:/home/oscho707/TDP028/tdp028-projekt/AndroidPlask/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
-    <eat-comment/>
     <style name="Base.AlertDialog.AppCompat" parent="android:Widget">
         <item name="android:layout">@layout/abc_alert_dialog_material</item>
         <item name="listLayout">@layout/abc_select_dialog_material</item>
