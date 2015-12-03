@@ -1770,6 +1770,18 @@
     <style name="CardView.Light">
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
     </style>
+    <!-- From: file:/home/oscho707/TDP028/tdp028-projekt/AndroidPlask/app/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="PlaskTheme" parent="@style/Theme.AppCompat">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/plask_blue</item>
+        <item name="colorPrimaryDark">@color/plask_white</item>
+        <item name="android:colorBackground">@color/plask_white</item>
+        <item name="colorAccent">@color/plask_blue</item>
+        <item name="android:textColorPrimary">@color/plask_white</item>
+        <item name="android:windowBackground">@color/windowBackground</item>
+        <item name="android:colorForeground">@color/plask_white</item>
+    </style>
     <!-- From: file:/home/oscho707/TDP028/tdp028-projekt/AndroidPlask/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
     <eat-comment/>
     <style name="Platform.AppCompat" parent="android:Theme">
