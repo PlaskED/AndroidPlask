@@ -34,6 +34,8 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class MainFragment extends android.support.v4.app.Fragment {
     private int i;
@@ -55,6 +57,8 @@ public class MainFragment extends android.support.v4.app.Fragment {
 
 
         cardFrame.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
+            private Object dataObject;
+
             @Override
             public void removeFirstObjectInAdapter() {
                 // this is the simplest way to delete an object from the Adapter (/AdapterView)
@@ -68,13 +72,23 @@ public class MainFragment extends android.support.v4.app.Fragment {
                 //Do something on the left!
                 //You also have access to the original object.
                 //If you want to use it just cast it (String) dataObject
+                //When swiping left, the post should be disliked
+                HashMap<String,String> jsonmap = new HashMap<>();
                 Toast.makeText(getActivity(), "Left!", Toast.LENGTH_SHORT).show();
-                Log.d("obj", dataObject.toString());
+
+                PostObject jsondata = (PostObject) dataObject;
+                Log.d("PID", jsondata.pid().toString());
+
             }
 
             @Override
             public void onRightCardExit(Object dataObject) {
+                //When swiping right, like the post
                 Toast.makeText(getActivity(), "Right!", Toast.LENGTH_SHORT).show();
+
+                PostObject jsondata = (PostObject) dataObject;
+                Log.d("PID", jsondata.pid().toString());
+
             }
 
             @Override
