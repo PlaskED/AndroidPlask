@@ -32,7 +32,7 @@ public class PostObjectAdapter extends ArrayAdapter<PostObject> {
         TextView likes = (TextView) convertView.findViewById(R.id.cardLikes);
         likes.setText("+"+data.likes);
         TextView pid = (TextView) convertView.findViewById(R.id.cardPid);
-        pid.setText("#123");//+data.pid);
+        pid.setText("#"+data.pid);
 
         return convertView;
     }

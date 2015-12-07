@@ -49,7 +49,6 @@ public class PostFragment extends android.support.v4.app.Fragment {
         jsonmap.put("text",text);
         jsonmap.put("lat",lat);
         jsonmap.put("lng",lng);
-        jsonmap.put("likes","0");
         JSONObject jsonBody = new JSONObject(jsonmap);
         JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, jsonBody ,new Response.Listener<JSONObject>() {
             @Override
