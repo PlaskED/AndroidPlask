@@ -14,6 +14,16 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
@@ -115,5 +125,37 @@ public class MainActivity extends AppCompatActivity {
         fm_t.replace(R.id.mainView, new PostFragment());
         fm_t.addToBackStack(null);
         fm_t.commit();
+    }
+
+    public void getJsonData(RequestQueue queue, final ArrayAdapter<String> arr) {
+        JSONObject json;
+        String url = "http://128.199.43.215:3000/api/getposts";
+
+        JsonArrayRequest jsonRequest = new JsonArrayRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            JSONArray res = response;
+                            Log.d("res", response.toString());
+                            //arr.clear();
+                            for (int n = response.length()-1 ; 0 <= n; n--) {
+                                Log.d("res", response.getJSONObject(n).toString());
+                                PostObject data = new PostObject(res.getJSONObject(n));
+                                arr.add(data.text());
+                            }
+                        } catch (JSONException e) {
+                            Log.d("Exception", e.toString());
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                });
+        arr.notifyDataSetChanged();
+        queue.add(jsonRequest);
     }
 }

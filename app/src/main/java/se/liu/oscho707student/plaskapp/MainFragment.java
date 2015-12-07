@@ -48,7 +48,7 @@ public class MainFragment extends android.support.v4.app.Fragment {
         final ArrayList<String> posts = new ArrayList<String>();
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.card, R.id.cardText, posts);
         cardFrame.setAdapter(arrayAdapter);
-        getJsonData(queue, arrayAdapter);
+        ((MainActivity)getActivity()).getJsonData(queue, arrayAdapter);
 
 
         cardFrame.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
@@ -66,7 +66,7 @@ public class MainFragment extends android.support.v4.app.Fragment {
                 //You also have access to the original object.
                 //If you want to use it just cast it (String) dataObject
                 Toast.makeText(getActivity(), "Left!", Toast.LENGTH_SHORT).show();
-                Log.d("obj",dataObject.toString());
+                Log.d("obj", dataObject.toString());
             }
 
             @Override
@@ -77,7 +77,7 @@ public class MainFragment extends android.support.v4.app.Fragment {
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
                 // Ask for more data here
-                getJsonData(queue, arrayAdapter);
+                ((MainActivity)getActivity()).getJsonData(queue, arrayAdapter);
                 //posts.add("XML ".concat(String.valueOf(i)));
                 //arrayAdapter.notifyDataSetChanged();
                 //Log.d("LIST", "notified");
@@ -97,9 +97,10 @@ public class MainFragment extends android.support.v4.app.Fragment {
         cardFrame.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
-                makeToast(getContext(),"Clicked!");
+                makeToast(getContext(), "Clicked!");
             }
-            void makeToast(Context ctx, String s){
+
+            void makeToast(Context ctx, String s) {
                 Toast.makeText(ctx, s, Toast.LENGTH_SHORT).show();
             }
         });
@@ -108,36 +109,4 @@ public class MainFragment extends android.support.v4.app.Fragment {
         return view;
     }
 
-
-    void getJsonData(RequestQueue queue, final ArrayAdapter<String> arr) {
-        JSONObject json;
-        String url = "http://128.199.43.215:3000/api/getposts";
-
-        JsonArrayRequest jsonRequest = new JsonArrayRequest
-                (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        try {
-                            JSONArray res = response;//.getJSONArray("result");
-                            Log.d("res", response.toString());
-                            //arr.clear();
-                            for (int n = response.length()-1 ; 0 <= n; n--) {
-                                Log.d("res", response.getJSONObject(n).toString());
-                                PostObject data = new PostObject(res.getJSONObject(n));
-                                arr.add(data.text());
-                            }
-                        } catch (JSONException e) {
-                            Log.d("Exception", e.toString());
-                        }
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        error.printStackTrace();
-                    }
-                });
-        arr.notifyDataSetChanged();
-        queue.add(jsonRequest);
-    }
 }
