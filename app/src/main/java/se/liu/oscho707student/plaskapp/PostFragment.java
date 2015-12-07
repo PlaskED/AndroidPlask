@@ -10,8 +10,14 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class PostFragment extends android.support.v4.app.Fragment {
@@ -25,7 +31,7 @@ public class PostFragment extends android.support.v4.app.Fragment {
         postButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String postText = ((EditText) view.findViewById(R.id.postText)).getText().toString();
-                sendPost(queue, postText);
+                sendPost(queue, postText, "0", "0");
 
                 android.support.v4.app.FragmentManager fm = getFragmentManager();
                 android.support.v4.app.FragmentTransaction fm_t = fm.beginTransaction();
@@ -35,28 +41,30 @@ public class PostFragment extends android.support.v4.app.Fragment {
         });
 
         return view;
-    };
+    }
 
-    public static void sendPost(final RequestQueue queue, final String post){
-            String url = "http://128.199.43.215:3000/api/"+post;
-            StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                    new Response.Listener<String>()
-                    {
-                        @Override
-                        public void onResponse(String response) {
+    public static void sendPost(final RequestQueue queue, final String text, final String lat, final String lng) {
+        String url = "http://128.199.43.215:3000/api/add";
+        Map jsonmap = new HashMap<String, String>();
+        jsonmap.put("text",text);
+        jsonmap.put("lat",lat);
+        jsonmap.put("lng",lng);
+        jsonmap.put("likes","0");
+        JSONObject jsonBody = new JSONObject(jsonmap);
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, jsonBody ,new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
 
-                        }
-                    },
-                    new Response.ErrorListener()
-                    {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
 
-                        }
-                    }
-            );
-            queue.add(postRequest);
-        }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        });
+        queue.add(req);
+    }
 
 }
 

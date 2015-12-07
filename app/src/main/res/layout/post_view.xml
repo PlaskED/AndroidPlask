@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFF"
+        android:paddingLeft="15sp"
+        android:paddingTop="15sp"
+        android:paddingRight="15sp"
+        android:paddingBottom="0sp"
+        android:textSize="20sp"
+        android:textIsSelectable="false" />
+    <TextView
+        android:id="@+id/likes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="#FFF"
+        android:paddingTop="0sp"
+        android:paddingLeft="15sp"
+        android:paddingRight="15sp"
+        android:paddingBottom="15sp"
+        android:textSize="25sp" />
+</LinearLayout>

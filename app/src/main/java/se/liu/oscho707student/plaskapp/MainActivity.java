@@ -24,6 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         //Syncs indicator to current state of our menu IE: open/closed states
         super.onPostCreate(savedInstanceState);
         menuToggle.syncState();
-    };
+    }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -113,10 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (menuToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return false;
+        return menuToggle.onOptionsItemSelected(item);
     }
 
     public void FABClicked(View v) {
@@ -127,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         fm_t.commit();
     }
 
-    public void getJsonData(RequestQueue queue, final ArrayAdapter<String> arr) {
+    public void getJsonData(RequestQueue queue, final PostObjectAdapter arr) {
         JSONObject json;
         String url = "http://128.199.43.215:3000/api/getposts";
 
@@ -142,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                             for (int n = response.length()-1 ; 0 <= n; n--) {
                                 Log.d("res", response.getJSONObject(n).toString());
                                 PostObject data = new PostObject(res.getJSONObject(n));
-                                arr.add(data.text());
+                                arr.add(data);
                             }
                         } catch (JSONException e) {
                             Log.d("Exception", e.toString());
@@ -157,5 +155,11 @@ public class MainActivity extends AppCompatActivity {
                 });
         arr.notifyDataSetChanged();
         queue.add(jsonRequest);
+    }
+
+    public void populateArr(final ArrayAdapter<String> res, final ArrayList<PostObject> old) {
+        //for (int n = 0 ; n <= old.length() ; n++) {
+
+        //}
     }
 }

@@ -45,10 +45,13 @@ public class MainFragment extends android.support.v4.app.Fragment {
         final RequestQueue queue = Volley.newRequestQueue(getContext());
 
         final SwipeFlingAdapterView cardFrame = (SwipeFlingAdapterView) view.findViewById(R.id.cardContainer);
-        final ArrayList<String> posts = new ArrayList<String>();
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.card, R.id.cardText, posts);
+        final ArrayList<PostObject> posts = new ArrayList<PostObject>();
+        final PostObjectAdapter arrayAdapter = new PostObjectAdapter(getActivity(), posts);
+        //final ArrayList<String> posts = new ArrayList<String>();
+        //final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.card, R.id.cardText, posts);
         cardFrame.setAdapter(arrayAdapter);
-        ((MainActivity)getActivity()).getJsonData(queue, arrayAdapter);
+        ((MainActivity) getActivity()).getJsonData(queue, arrayAdapter);
+
 
 
         cardFrame.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {

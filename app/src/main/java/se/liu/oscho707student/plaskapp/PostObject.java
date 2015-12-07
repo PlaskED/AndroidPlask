@@ -7,24 +7,26 @@ import org.json.JSONObject;
 
 public class PostObject {
     private JSONObject json;
-    public String text, likes, xpos,ypos;
+    public String text, lat, lng, likes;//, pid;
 
     public PostObject(JSONObject json) {
         this.json = json;
 
         try {
             this.text = this.json.getString("text");
-            this.likes = "0";//this.json.getString("likes");
-            this.xpos = "0";//this.json.getString("xpos");
-            this.ypos = "0";//this.json.getString("ypos");
+            this.lat = this.json.getString("lat");
+            this.lng = this.json.getString("lng");
+            this.likes = "0";
+            //this.pid = this.json.getString("pid");
         } catch (JSONException e) {
             Log.d("Error, JSON", e.toString());
         }
     }
 
     public String text() {return this.text;}
+    public String lat() {return this.lat;}
+    public String lng() {return this.lng;}
     public String likes() {return this.likes;}
-    public String xpos() {return this.ypos;}
-    public String ypos() {return this.xpos;}
+    //public String pid() {return this.pid;}
 
 }
