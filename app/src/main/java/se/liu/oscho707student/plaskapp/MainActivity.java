@@ -137,7 +137,8 @@ public class MainActivity extends AppCompatActivity {
                             JSONArray res = response;
                             Log.d("res", response.toString());
                             //arr.clear();
-                            for (int n = response.length()-1 ; 0 <= n; n--) {
+                            //for (int n = response.length()-1 ; 0 <= n; n--) {
+                            for (int n = 0 ; n < response.length() ; n++) {
                                 Log.d("res", response.getJSONObject(n).toString());
                                 PostObject data = new PostObject(res.getJSONObject(n));
                                 arr.add(data);
@@ -157,9 +158,4 @@ public class MainActivity extends AppCompatActivity {
         queue.add(jsonRequest);
     }
 
-    public void populateArr(final ArrayAdapter<String> res, final ArrayList<PostObject> old) {
-        //for (int n = 0 ; n <= old.length() ; n++) {
-
-        //}
-    }
 }
