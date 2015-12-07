@@ -5,6 +5,7 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
     private ListView menuList;
@@ -47,9 +50,25 @@ public class MainActivity extends AppCompatActivity {
         menuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //go to fragment for item selected
+                selectOption(position);
             }
         });
+    }
+
+    private void selectOption(int position) {
+        //Create fragment for the selected option
+        Log.d("pos", "val: "+position);
+        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction fm_t = fm.beginTransaction();
+        if (position == 0) {
+            fm_t.replace(R.id.mainView, new MainFragment());
+        }
+        else if (position == 1) {
+            fm_t.replace(R.id.mainView, new PostFragment());
+        }
+        fm_t.addToBackStack(null);
+        fm_t.commit();
+        menuLayout.closeDrawers();
     }
 
     private void setupMenu() {

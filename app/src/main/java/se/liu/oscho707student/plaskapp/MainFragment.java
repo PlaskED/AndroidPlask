@@ -66,6 +66,7 @@ public class MainFragment extends android.support.v4.app.Fragment {
                 //You also have access to the original object.
                 //If you want to use it just cast it (String) dataObject
                 Toast.makeText(getActivity(), "Left!", Toast.LENGTH_SHORT).show();
+                Log.d("obj",dataObject.toString());
             }
 
             @Override

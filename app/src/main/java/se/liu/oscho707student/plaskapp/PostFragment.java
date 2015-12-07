@@ -38,7 +38,7 @@ public class PostFragment extends android.support.v4.app.Fragment {
 
         postButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String postText = ((EditText) view.findViewById(R.id.postField)).getText().toString();
+                String postText = ((EditText) view.findViewById(R.id.postText)).getText().toString();
                 sendPost(queue, postText);
 
                 android.support.v4.app.FragmentManager fm = getFragmentManager();
