@@ -24,4 +24,4 @@
         android:background="@color/plask_status"
         android:theme="@style/PlaskTheme" />
 
-</android.support.v4.widget.DrawerLayout><!-- From: file:/C:/Users/Knarklan/Desktop/TDP028/AndroidPlask/app/src/main/res/layout/activity_main.xml -->
+</android.support.v4.widget.DrawerLayout><!-- From: file:/home/oscho707/TDP028/tdp028-projekt/AndroidPlask/app/src/main/res/layout/activity_main.xml -->
