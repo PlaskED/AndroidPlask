@@ -29,8 +29,6 @@ public class PostObjectListAdapter extends ArrayAdapter<PostObject> {
         TextView likes = (TextView) convertView.findViewById(R.id.likes);
         likes.setText("+" + String.valueOf(data.likes));
 
-        Log.wtf("tjo","tjo");
-
         return convertView;
     }
 }

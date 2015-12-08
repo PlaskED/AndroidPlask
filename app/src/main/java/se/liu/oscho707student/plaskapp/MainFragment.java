@@ -1,44 +1,22 @@
 package se.liu.oscho707student.plaskapp;
 
-import android.app.Activity;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class MainFragment extends android.support.v4.app.Fragment {
-    private int i;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,26 +46,14 @@ public class MainFragment extends android.support.v4.app.Fragment {
 
             @Override
             public void onLeftCardExit(Object dataObject) {
-                //Do something on the left!
-                //You also have access to the original object.
-                //If you want to use it just cast it (String) dataObject
-                //When swiping left, the post should be disliked
                 HashMap<String,String> jsonmap = new HashMap<>();
-                Toast.makeText(getActivity(), "Left!", Toast.LENGTH_SHORT).show();
-
                 PostObject jsondata = (PostObject) dataObject;
-                Log.d("PID", jsondata.pid().toString());
                 MainActivity.ratePost(queue, jsondata, "down");
-
             }
 
             @Override
             public void onRightCardExit(Object dataObject) {
-                //When swiping right, like the post
-                Toast.makeText(getActivity(), "Right!", Toast.LENGTH_SHORT).show();
-
                 PostObject jsondata = (PostObject) dataObject;
-                Log.d("PID", jsondata.pid().toString());
                 MainActivity.ratePost(queue, jsondata, "up");
             }
 
@@ -95,10 +61,6 @@ public class MainFragment extends android.support.v4.app.Fragment {
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
                 // Ask for more data here
                 ((MainActivity)getActivity()).getJsonData(queue, arrayAdapter);
-                //posts.add("XML ".concat(String.valueOf(i)));
-                //arrayAdapter.notifyDataSetChanged();
-                //Log.d("LIST", "notified");
-                //i++;
             }
 
             @Override

@@ -9,9 +9,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by oscho707 on 11/18/15.
- */
 public class PostObjectAdapter extends ArrayAdapter<PostObject> {
     public PostObjectAdapter(Context context, ArrayList<PostObject> postData) {
         super(context, 0, postData);
