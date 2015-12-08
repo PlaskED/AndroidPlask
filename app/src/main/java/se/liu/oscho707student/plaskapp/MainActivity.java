@@ -3,6 +3,7 @@ package se.liu.oscho707student.plaskapp;
 import android.content.res.Configuration;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -78,6 +79,9 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (position == 1) {
             fm_t.replace(R.id.mainView, new PostFragment());
+        }
+        else if (position == 2) {
+            fm_t.replace(R.id.mainView, new TopFragment());
         }
         fm_t.addToBackStack(null);
         fm_t.commit();
@@ -183,6 +187,40 @@ public class MainActivity extends AppCompatActivity {
         });
 
         queue.add(req);
+    }
+
+    public void getTopData(RequestQueue queue, final PostObjectListAdapter arr, final SwipeRefreshLayout swipeLayout) {
+        JSONObject json;
+        String url = "http://128.199.43.215:3000/api/popular";
+        //String url = "http://127.0.0.1:3000/api/getposts";
+
+        JsonArrayRequest jsonRequest = new JsonArrayRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            JSONArray res = response;
+                            Log.d("res", response.toString());
+                            arr.clear();
+                            for (int n = 0 ; n < response.length() ; n++) {
+                                Log.d("res", response.getJSONObject(n).toString());
+                                PostObject data = new PostObject(res.getJSONObject(n));
+                                arr.add(data);
+                            }
+                            arr.notifyDataSetChanged();
+                            swipeLayout.setRefreshing(false);
+                        } catch (JSONException e) {
+                            Log.d("Exception", e.toString());
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                });
+        queue.add(jsonRequest);
     }
 
 }
