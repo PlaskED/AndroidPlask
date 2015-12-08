@@ -13,7 +13,7 @@
     android:layout_height="match_parent"
     app:rotation_degrees="15"
     app:max_visible="4"
-    app:min_adapter_stack="3"/>
+    app:min_adapter_stack="1"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
