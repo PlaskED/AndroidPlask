@@ -26,13 +26,17 @@ public class PostObjectAdapter extends ArrayAdapter<PostObject> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.card, parent, false);
         }
 
-        //R.layout.card, R.id.cardText
         TextView title = (TextView) convertView.findViewById(R.id.cardText);
         title.setText(data.text);
         TextView likes = (TextView) convertView.findViewById(R.id.cardLikes);
-        likes.setText("+"+data.likes);
+        if(data.likes < 0) {
+            likes.setText(String.valueOf(data.likes));
+        }
+        else {
+            likes.setText("+" + String.valueOf(data.likes));
+        }
         TextView pid = (TextView) convertView.findViewById(R.id.cardPid);
-        pid.setText("#"+data.pid);
+        pid.setText("#"+String.valueOf(data.pid));
 
         return convertView;
     }

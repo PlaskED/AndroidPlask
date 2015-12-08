@@ -19,6 +19,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,6 +27,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private ListView menuList;
@@ -128,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
     public void getJsonData(RequestQueue queue, final PostObjectAdapter arr) {
         JSONObject json;
         String url = "http://128.199.43.215:3000/api/getposts";
+        //String url = "http://127.0.0.1:3000/api/getposts";
 
         JsonArrayRequest jsonRequest = new JsonArrayRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -155,6 +158,31 @@ public class MainActivity extends AppCompatActivity {
                 });
         arr.notifyDataSetChanged();
         queue.add(jsonRequest);
+    }
+
+    public static void ratePost(final RequestQueue queue, final PostObject obj, final String op) {
+        String url = "http://128.199.43.215:3000/api/rate";
+        //String url = "http://127.0.0.1:3000/api/add";
+        Map jsonmap = new HashMap<String, String>();
+        jsonmap.put("pid",obj.pid());
+        jsonmap.put("likes",obj.likes());
+        jsonmap.put("op",op);
+        Log.d("likes", obj.likes().toString());
+        JSONObject jsonBody = new JSONObject(jsonmap);
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, jsonBody ,new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        });
+
+        queue.add(req);
     }
 
 }

@@ -31,7 +31,7 @@ public class TopFragment extends android.support.v4.app.Fragment {
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                //doJodelData(queue, arr, swipeLayout);
+
             }
         });
 

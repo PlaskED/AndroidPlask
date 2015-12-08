@@ -49,8 +49,6 @@ public class MainFragment extends android.support.v4.app.Fragment {
         final SwipeFlingAdapterView cardFrame = (SwipeFlingAdapterView) view.findViewById(R.id.cardContainer);
         final ArrayList<PostObject> posts = new ArrayList<PostObject>();
         final PostObjectAdapter arrayAdapter = new PostObjectAdapter(getActivity(), posts);
-        //final ArrayList<String> posts = new ArrayList<String>();
-        //final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.card, R.id.cardText, posts);
         cardFrame.setAdapter(arrayAdapter);
         ((MainActivity) getActivity()).getJsonData(queue, arrayAdapter);
 
@@ -65,6 +63,7 @@ public class MainFragment extends android.support.v4.app.Fragment {
                 Log.d("LIST", "removed object!");
                 posts.remove(0);
                 arrayAdapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -78,6 +77,7 @@ public class MainFragment extends android.support.v4.app.Fragment {
 
                 PostObject jsondata = (PostObject) dataObject;
                 Log.d("PID", jsondata.pid().toString());
+                MainActivity.ratePost(queue, jsondata, "down");
 
             }
 
@@ -88,7 +88,7 @@ public class MainFragment extends android.support.v4.app.Fragment {
 
                 PostObject jsondata = (PostObject) dataObject;
                 Log.d("PID", jsondata.pid().toString());
-
+                MainActivity.ratePost(queue, jsondata, "up");
             }
 
             @Override
