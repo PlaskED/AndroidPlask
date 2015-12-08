@@ -205,7 +205,9 @@ public class MainActivity extends AppCompatActivity {
                             for (int n = 0 ; n < response.length() ; n++) {
                                 Log.d("res", response.getJSONObject(n).toString());
                                 PostObject data = new PostObject(res.getJSONObject(n));
-                                arr.add(data);
+                                if (data.likes > 0) {
+                                    arr.add(data);
+                                }
                             }
                             arr.notifyDataSetChanged();
                             swipeLayout.setRefreshing(false);
