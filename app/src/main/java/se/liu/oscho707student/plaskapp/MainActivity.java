@@ -1,6 +1,11 @@
 package se.liu.oscho707student.plaskapp;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.location.Location;
+import android.location.LocationManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -21,6 +26,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,12 +37,15 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private ListView menuList;
     private ArrayAdapter<String> mlAdapter;
     private android.support.v7.app.ActionBarDrawerToggle menuToggle;
     private DrawerLayout menuLayout;
     private String activityTitle;
+    private GoogleApiClient mGoogleApiClient;
+    private Location location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +58,20 @@ public class MainActivity extends AppCompatActivity {
         setupMenu();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
         android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fm_t = fm.beginTransaction();
         fm_t.add(R.id.mainView, new MainFragment());
         fm_t.commit();
+
+        // Create an instance of GoogleAPIClient.
+        if (mGoogleApiClient == null) {
+            buildGoogleApiClient();
+        }
+
+        //Start google api
+        onStart();
+
 
 
     }
@@ -121,6 +142,8 @@ public class MainActivity extends AppCompatActivity {
         return menuToggle.onOptionsItemSelected(item);
     }
 
+
+
     public void FABClicked(View v) {
         android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fm_t = fm.beginTransaction();
@@ -131,7 +154,37 @@ public class MainActivity extends AppCompatActivity {
 
     public void getJsonData(RequestQueue queue, final PostObjectAdapter arr) {
         JSONObject json;
-        String url = "http://128.199.43.215:3000/api/getposts";
+        String url = "http://128.199.43.215:3000/api/getall";
+
+        JsonArrayRequest jsonRequest = new JsonArrayRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            JSONArray res = response;
+                            Log.d("res", response.toString());
+                            for (int n = 0 ; n < response.length() ; n++) {
+                                PostObject data = new PostObject(res.getJSONObject(n));
+                                arr.add(data);
+                            }
+                        } catch (JSONException e) {
+                            Log.d("Exception", e.toString());
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                });
+        arr.notifyDataSetChanged();
+        queue.add(jsonRequest);
+    }
+
+    public void getPost(RequestQueue queue, final PostObjectAdapter arr, final int pid) {
+        JSONObject json;
+        String url = "http://128.199.43.215:3000/api/getpost/"+pid;
 
         JsonArrayRequest jsonRequest = new JsonArrayRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -140,10 +193,9 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             JSONArray res = response;
                             //Log.d("res", response.toString());
-                            for (int n = 0 ; n < response.length() ; n++) {
-                                PostObject data = new PostObject(res.getJSONObject(n));
-                                arr.add(data);
-                            }
+                            PostObject data = new PostObject(res.getJSONObject(0));
+                            arr.add(data);
+
                         } catch (JSONException e) {
                             Log.d("Exception", e.toString());
                         }
@@ -216,4 +268,53 @@ public class MainActivity extends AppCompatActivity {
         queue.add(jsonRequest);
     }
 
+    protected synchronized void buildGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API).build();
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (mGoogleApiClient != null) {
+            mGoogleApiClient.connect();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    protected void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
+
+    @Override
+    public void onConnected(Bundle bundle) {
+        location = LocationServices.FusedLocationApi.getLastLocation(
+                mGoogleApiClient);
+        if (location != null) {
+            Log.d("latitude ","val:"+location.getLatitude());
+            Log.d("longitude ","val:"+location.getLongitude());
+        }
+        else {
+            Log.d("err","no location");
+        }
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        Log.i("Error", "Connection failed: ConnectionResult.getErrorCode() = "
+                + connectionResult.getErrorCode());
+    }
 }

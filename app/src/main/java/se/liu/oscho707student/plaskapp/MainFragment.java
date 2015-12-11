@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainFragment extends android.support.v4.app.Fragment {
+    private int nextIndex = 0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -28,61 +29,65 @@ public class MainFragment extends android.support.v4.app.Fragment {
         final ArrayList<PostObject> posts = new ArrayList<PostObject>();
         final PostObjectAdapter arrayAdapter = new PostObjectAdapter(getActivity(), posts);
         cardFrame.setAdapter(arrayAdapter);
-        ((MainActivity) getActivity()).getJsonData(queue, arrayAdapter);
+        //((MainActivity) getActivity()).getJsonData(queue, arrayAdapter);
 
 
 
         cardFrame.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
-            private Object dataObject;
+                                       private Object dataObject;
 
-            @Override
-            public void removeFirstObjectInAdapter() {
-                // this is the simplest way to delete an object from the Adapter (/AdapterView)
-                Log.d("LIST", "removed object!");
-                posts.remove(0);
-                arrayAdapter.notifyDataSetChanged();
+                                       @Override
+                                       public void removeFirstObjectInAdapter() {
+                                           // this is the simplest way to delete an object from the Adapter (/AdapterView)
+                                           Log.d("LIST", "removed object!");
+                                           posts.remove(0);
+                                           arrayAdapter.notifyDataSetChanged();
+                                       }
 
-            }
+                                       @Override
+                                       public void onLeftCardExit(Object dataObject) {
+                                           PostObject jsondata = (PostObject) dataObject;
+                                           MainActivity.ratePost(queue, jsondata, "down");
 
-            @Override
-            public void onLeftCardExit(Object dataObject) {
-                HashMap<String,String> jsonmap = new HashMap<>();
-                PostObject jsondata = (PostObject) dataObject;
-                MainActivity.ratePost(queue, jsondata, "down");
-            }
 
-            @Override
-            public void onRightCardExit(Object dataObject) {
-                PostObject jsondata = (PostObject) dataObject;
-                MainActivity.ratePost(queue, jsondata, "up");
-            }
+                                       }
 
-            @Override
-            public void onAdapterAboutToEmpty(int itemsInAdapter) {
-                // Ask for more data here
-                ((MainActivity)getActivity()).getJsonData(queue, arrayAdapter);
-            }
+                                       @Override
+                                       public void onRightCardExit(Object dataObject) {
+                                           PostObject jsondata = (PostObject) dataObject;
+                                           MainActivity.ratePost(queue, jsondata, "up");
+                                       }
 
-            @Override
-            public void onScroll(float scrollProgressPercent) {
+                                       @Override
+                                       public void onAdapterAboutToEmpty(int itemsInAdapter) {
+                                           // Ask for more data here
+                                           ((MainActivity) getActivity()).getJsonData(queue, arrayAdapter);
+                                       }
 
-                //View view = cardFrame.getSelectedView();
-                //view.findViewById(R.id.background).setAlpha(0);
-                //view.findViewById(R.id.item_swipe_right_indicator).setAlpha(scrollProgressPercent < 0 ? -scrollProgressPercent : 0); view.findViewById(R.id.item_swipe_left_indicator).setAlpha(scrollProgressPercent > 0 ? scrollProgressPercent : 0);
-            }
-        });
+                                       @Override
+                                       public void onScroll(float scrollProgressPercent) {
 
-        // Optionally add an OnItemClickListener
-        cardFrame.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClicked(int itemPosition, Object dataObject) {
-                makeToast(getContext(), "Clicked!");
-            }
+                                           //View view = cardFrame.getSelectedView();
+                                           //view.findViewById(R.id.background).setAlpha(0);
+                                           //view.findViewById(R.id.item_swipe_right_indicator).setAlpha(scrollProgressPercent < 0 ? -scrollProgressPercent : 0); view.findViewById(R.id.item_swipe_left_indicator).setAlpha(scrollProgressPercent > 0 ? scrollProgressPercent : 0);
+                                       }
+                                   }
 
-            void makeToast(Context ctx, String s) {
-                Toast.makeText(ctx, s, Toast.LENGTH_SHORT).show();
-            }
-        });
+        );
+
+            // Optionally add an OnItemClickListener
+            cardFrame.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener()
+
+            {
+                @Override
+                public void onItemClicked(int itemPosition, Object dataObject) {
+                    //makeToast(getContext(), "Clicked!");
+                }
+
+                void makeToast(Context ctx, String s) {
+                    Toast.makeText(ctx, s, Toast.LENGTH_SHORT).show();
+                }
+            });
 
 
         return view;
