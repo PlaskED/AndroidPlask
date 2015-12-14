@@ -29,9 +29,6 @@ public class MainFragment extends android.support.v4.app.Fragment {
         final ArrayList<PostObject> posts = new ArrayList<PostObject>();
         final PostObjectAdapter arrayAdapter = new PostObjectAdapter(getActivity(), posts);
         cardFrame.setAdapter(arrayAdapter);
-        //((MainActivity) getActivity()).getJsonData(queue, arrayAdapter);
-
-
 
         cardFrame.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
                                        private Object dataObject;
