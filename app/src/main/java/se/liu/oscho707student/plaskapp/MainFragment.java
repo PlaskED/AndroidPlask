@@ -14,10 +14,8 @@ import com.android.volley.toolbox.Volley;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MainFragment extends android.support.v4.app.Fragment {
-    private int nextIndex = 0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
