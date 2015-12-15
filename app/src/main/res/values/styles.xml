@@ -5,9 +5,13 @@
         <item name="colorPrimaryDark">@color/plask_white</item>
         <item name="android:colorBackground">@color/plask_white</item>
         <item name="colorAccent">@color/plask_blue</item>
-        <item name="android:textColorPrimary">@color/plask_white</item>
+        <item name="android:textColorPrimary">@color/plask_background</item>
         <item name="android:windowBackground">@color/windowBackground</item>
         <item name="android:colorForeground">@color/plask_white</item>
+        <!-- Active thumb color & Active track color(30% transparency) -->
+        <item name="colorControlActivated">@color/plask_white</item>
+        <!-- Inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/plask_blue</item>
     </style>
 
 </resources>

@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="se.liu.oscho707student.plaskapp.FilterFragment"
+    android:background="@color/plask_background"
+    android:gravity="top">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Filter Settings"
+        android:id="@+id/settingTitle"
+        android:layout_gravity="top|bottom|center_horizontal"
+        android:textStyle="bold"
+        android:textSize="40dp"
+        android:textColor="@color/plask_background"
+        android:layout_centerHorizontal="true"
+        android:background="@color/plask_status"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:editable="false"
+        android:gravity="center_horizontal" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:text="Local"
+        android:id="@+id/switchLocal"
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        android:textColor="@color/plask_background"
+        android:singleLine="false"
+        android:layout_alignParentStart="false"
+        android:checked="true"
+        android:textStyle="bold"
+        android:layout_alignTop="@+id/settingTitle"
+        android:layout_alignParentTop="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_centerInParent="true"
+        android:switchPadding="5dp"
+        android:elegantTextHeight="false"
+        android:allowUndo="false"
+        android:padding="10dp"
+        android:layout_marginTop="60dp" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:text="Toplist"
+        android:id="@+id/switchToplist"
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        android:textColor="@color/plask_background"
+        android:singleLine="false"
+        android:checked="true"
+        android:textStyle="bold"
+        android:switchPadding="5dp"
+        android:elegantTextHeight="false"
+        android:allowUndo="false"
+        android:padding="10dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/switchAll" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:text="All"
+        android:id="@+id/switchAll"
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        android:textColor="@color/plask_background"
+        android:singleLine="false"
+        android:checked="true"
+        android:textStyle="bold"
+        android:layout_alignWithParentIfMissing="false"
+        android:switchPadding="5dp"
+        android:elegantTextHeight="false"
+        android:allowUndo="false"
+        android:padding="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/switchLocal" />
+
+</RelativeLayout>

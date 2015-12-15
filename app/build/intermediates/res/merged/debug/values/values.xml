@@ -144,6 +144,7 @@
     <color name="material_grey_900">#ff212121</color>
     <!-- From: file:/home/oscho707/TDP028/tdp028-projekt/AndroidPlask/app/src/main/res/values/colors.xml -->
     <eat-comment/>
+    <color name="plask_background">#FFFCFCFC</color>
     <color name="plask_black">#161616</color>
     <color name="plask_blue">#0f64a8</color>
     <color name="plask_green">#00bb28</color>
@@ -1678,9 +1679,13 @@
         <item name="colorPrimaryDark">@color/plask_white</item>
         <item name="android:colorBackground">@color/plask_white</item>
         <item name="colorAccent">@color/plask_blue</item>
-        <item name="android:textColorPrimary">@color/plask_white</item>
+        <item name="android:textColorPrimary">@color/plask_background</item>
         <item name="android:windowBackground">@color/windowBackground</item>
         <item name="android:colorForeground">@color/plask_white</item>
+        <!-- Active thumb color & Active track color(30% transparency) -->
+        <item name="colorControlActivated">@color/plask_white</item>
+        <!-- Inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/plask_blue</item>
     </style>
     <!-- From: file:/home/oscho707/TDP028/tdp028-projekt/AndroidPlask/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values/values.xml -->
     <eat-comment/>

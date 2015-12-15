@@ -6,6 +6,7 @@
     <color name="plask_red">#636363</color>
     <color name="primary_material_dark">#00bb28</color>
     <color name="plask_white">#f8f8f8</color>
+    <color name="plask_background">#FFFCFCFC</color>
     <color name="plask_navcolor">#00bb28</color>
     <color name="windowBackground">#0f64a8</color>
     <color name="accent_material_dark">#00bb28</color>

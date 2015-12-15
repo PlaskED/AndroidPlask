@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void addMenuItems() {
-        String[] optionArray = {"Main", "New Post", "Top List", "Filter", "Settings"};
+        String[] optionArray = {"Main", "New Post", "Top List", "Filter"};
         mlAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, optionArray);
         menuList.setAdapter(mlAdapter);
 
@@ -156,6 +156,9 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (position == 2) {
             fm_t.replace(R.id.mainView, new TopFragment());
+        }
+        else if (position == 3) {
+            fm_t.replace(R.id.mainView, new FilterFragment());
         }
         fm_t.addToBackStack(null);
         fm_t.commit();
