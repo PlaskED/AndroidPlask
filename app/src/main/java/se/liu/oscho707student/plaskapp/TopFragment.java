@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.RequestQueue;
@@ -24,7 +25,6 @@ public class TopFragment extends android.support.v4.app.Fragment {
         final SwipeRefreshLayout swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
         ArrayList<PostObject> postArr = new ArrayList<PostObject>();
         final PostObjectListAdapter arr = new PostObjectListAdapter(getContext(), postArr);
-        ListView lw = (ListView) view.findViewById(R.id.topList);
 
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -33,8 +33,32 @@ public class TopFragment extends android.support.v4.app.Fragment {
             }
         });
 
-        lw.setAdapter(arr);
         ((MainActivity)getActivity()).getTopData(queue, arr, swipeLayout);
+
+        ListView lw = (ListView) view.findViewById(R.id.topList);
+
+        lw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                PostObject data = (PostObject) arr.getItem(position);
+                android.support.v4.app.FragmentManager fm = getFragmentManager();
+                android.support.v4.app.FragmentTransaction fm_t = fm.beginTransaction();
+
+                android.support.v4.app.Fragment fragment = new ViewFragment();
+                Bundle bundle = new Bundle();
+                bundle.putCharSequence("text", data.text);
+                bundle.putInt("likes", data.likes);
+                bundle.putInt("pid", data.pid);
+                fragment.setArguments(bundle);
+
+                fm_t.replace(R.id.mainView, fragment);
+                fm_t.addToBackStack(null);
+                fm_t.commit();
+            }
+        });
+
+        lw.setAdapter(arr);
 
         return view;
     }
