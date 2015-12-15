@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
         fm_t.commit();
     }
 
-    public void getJsonData(RequestQueue queue, final PostObjectAdapter arr) {
+    public void getAllData(RequestQueue queue, final PostObjectAdapter arr) {
         JSONObject json;
         String url = "http://128.199.43.215:3000/api/getall";
 
@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONArray response) {
                         try {
                             JSONArray res = response;
-                            Log.d("res", response.toString());
+                            //Log.d("res", response.toString());
                             for (int n = 0 ; n < response.length() ; n++) {
                                 PostObject data = new PostObject(res.getJSONObject(n));
                                 arr.add(data);
@@ -326,11 +326,33 @@ public class MainActivity extends AppCompatActivity {
         queue.add(jsonRequest);
     }
 
-    public void getLocalData(RequestQueue queue, final PostObjectListAdapter arr, final SwipeRefreshLayout swipeLayout) {
+    public void getLocalData(RequestQueue queue, final PostObjectListAdapter arr, final String lng, final String lat) {
         JSONObject json;
-        String url = "http://128.199.43.215:3000/api/getLocal";
+        String url = "http://128.199.43.215:3000/api/getlocal/"+lng+"/"+lat;
+        JsonArrayRequest jsonRequest = new JsonArrayRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            JSONArray res = response;
+                            //Log.d("res", response.toString());
+                            for (int n = 0 ; n < response.length() ; n++) {
+                                PostObject data = new PostObject(res.getJSONObject(n));
+                                arr.add(data);
+                            }
+                        } catch (JSONException e) {
+                            Log.d("Exception", e.toString());
+                        }
+                    }
+                }, new Response.ErrorListener() {
 
-        //JSONArray request needs your current location aswell.
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                });
+        arr.notifyDataSetChanged();
+        queue.add(jsonRequest);
     }
 
 

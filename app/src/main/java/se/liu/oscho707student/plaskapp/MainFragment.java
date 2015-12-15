@@ -34,7 +34,6 @@ public class MainFragment extends android.support.v4.app.Fragment {
                                        @Override
                                        public void removeFirstObjectInAdapter() {
                                            // this is the simplest way to delete an object from the Adapter (/AdapterView)
-                                           Log.d("LIST", "removed object!");
                                            posts.remove(0);
                                            arrayAdapter.notifyDataSetChanged();
                                        }
@@ -43,8 +42,6 @@ public class MainFragment extends android.support.v4.app.Fragment {
                                        public void onLeftCardExit(Object dataObject) {
                                            PostObject jsondata = (PostObject) dataObject;
                                            MainActivity.ratePost(queue, jsondata, "down");
-
-
                                        }
 
                                        @Override
@@ -56,12 +53,16 @@ public class MainFragment extends android.support.v4.app.Fragment {
                                        @Override
                                        public void onAdapterAboutToEmpty(int itemsInAdapter) {
                                            // Ask for more data here
-                                           ((MainActivity) getActivity()).getJsonData(queue, arrayAdapter);
+                                           ((MainActivity) getActivity()).getAllData(queue, arrayAdapter);
+
+                                           //Behöver requesta samt hämta postionsdata först. Ska enbart hämta lokal data sen om inställd på det.
+                                           //String lng =
+                                           //String lat =
+                                           //((MainActivity) getActivity()).getLocalData(queue, arrayAdapter, lng, lat);
                                        }
 
                                        @Override
                                        public void onScroll(float scrollProgressPercent) {
-
                                            //View view = cardFrame.getSelectedView();
                                            //view.findViewById(R.id.background).setAlpha(0);
                                            //view.findViewById(R.id.item_swipe_right_indicator).setAlpha(scrollProgressPercent < 0 ? -scrollProgressPercent : 0); view.findViewById(R.id.item_swipe_left_indicator).setAlpha(scrollProgressPercent > 0 ? scrollProgressPercent : 0);
