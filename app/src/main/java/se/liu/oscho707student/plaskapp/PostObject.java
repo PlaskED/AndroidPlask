@@ -15,8 +15,6 @@ public class PostObject {
 
         try {
             this.text = this.json.getString("text");
-            this.lat = this.json.getString("lat");
-            this.lng = this.json.getString("lng");
             this.likes = this.json.getInt("likes");
             this.pid = this.json.getInt("pid");
         } catch (JSONException e) {
@@ -25,8 +23,6 @@ public class PostObject {
     }
 
     public String text() {return this.text;}
-    public String lat() {return this.lat;}
-    public String lng() {return this.lng;}
     public Integer likes() {return this.likes;}
     public Integer pid() {return this.pid;}
 

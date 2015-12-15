@@ -35,8 +35,6 @@ public class ViewFragment extends android.support.v4.app.Fragment {
         Integer pid = bundle.getInt("pid");
         Map jsonmap = new HashMap<String, String>();
         jsonmap.put("text",text);
-        jsonmap.put("lat", 0);
-        jsonmap.put("lng", 0);
         jsonmap.put("likes", likes);
         jsonmap.put("pid", pid);
         JSONObject jsonBody = new JSONObject(jsonmap);

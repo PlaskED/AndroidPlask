@@ -326,5 +326,12 @@ public class MainActivity extends AppCompatActivity {
         queue.add(jsonRequest);
     }
 
+    public void getLocalData(RequestQueue queue, final PostObjectListAdapter arr, final SwipeRefreshLayout swipeLayout) {
+        JSONObject json;
+        String url = "http://128.199.43.215:3000/api/getLocal";
+
+        //JSONArray request needs your current location aswell.
+    }
+
 
 }
