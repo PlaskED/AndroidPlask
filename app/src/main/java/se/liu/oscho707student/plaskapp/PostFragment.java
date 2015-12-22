@@ -27,6 +27,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -84,8 +85,8 @@ public class PostFragment extends android.support.v4.app.Fragment {
             Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
             RequestQueue queue = Volley.newRequestQueue(getContext());
             String postText = ((EditText) getView().findViewById(R.id.postText)).getText().toString();
-            String lat = String.format("%.3f", location.getLatitude());
-            String lng = String.format("%.3f", location.getLongitude());
+            String lat = String.format(Locale.US, "%.4f", location.getLatitude());
+            String lng = String.format(Locale.US, "%.4f", location.getLongitude());
             sendPost(queue, postText, lat, lng);
 
             android.support.v4.app.FragmentManager fm = getFragmentManager();

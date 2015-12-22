@@ -33,6 +33,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,19 +62,7 @@ public class MainActivity extends AppCompatActivity {
         fm_t.add(R.id.mainView, new MainFragment());
         fm_t.commit();
 
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION)) {
-
-            } else {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                        10);
-            }
-        }
+        sendRequest(10); //Initiate GPS request and setup listener depending on result
 
     }
 
@@ -98,9 +87,23 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    public void sendRequest(int reqCode) {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION)) {
+
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, reqCode);
+            }
+        }
+    }
+
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
             case 10: {
                 // If request is cancelled, the result arrays are empty.
@@ -125,11 +128,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return;
             }
-            // other 'case' lines to check for other
-            // permissions this app might request
         }
     }
-
 
     private void addMenuItems() {
         String[] optionArray = {"Main", "New Post", "Top List", "Filter"};
@@ -199,8 +199,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         return menuToggle.onOptionsItemSelected(item);
     }
-
-
 
     public void FABClicked(View v) {
         android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
@@ -326,7 +324,7 @@ public class MainActivity extends AppCompatActivity {
         queue.add(jsonRequest);
     }
 
-    public void getLocalData(RequestQueue queue, final PostObjectListAdapter arr, final String lng, final String lat) {
+    public void getLocalData(RequestQueue queue, final PostObjectAdapter arr, final String lat, final String lng) {
         JSONObject json;
         String url = "http://128.199.43.215:3000/api/getlocal/"+lng+"/"+lat;
         JsonArrayRequest jsonRequest = new JsonArrayRequest
@@ -335,7 +333,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONArray response) {
                         try {
                             JSONArray res = response;
-                            //Log.d("res", response.toString());
                             for (int n = 0 ; n < response.length() ; n++) {
                                 PostObject data = new PostObject(res.getJSONObject(n));
                                 arr.add(data);
@@ -354,6 +351,5 @@ public class MainActivity extends AppCompatActivity {
         arr.notifyDataSetChanged();
         queue.add(jsonRequest);
     }
-
 
 }
