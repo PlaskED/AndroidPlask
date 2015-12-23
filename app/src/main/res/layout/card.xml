@@ -27,7 +27,7 @@
         android:id="@+id/cardText"
         android:textSize="30sp"
         android:textColor="@color/plask_white"
-        android:background="@color/plask_status"
+        android:background="@color/plask_card"
         android:gravity="center"
         tools:text="null"
         android:layout_width="match_parent"

@@ -8,8 +8,8 @@
 
     <com.lorentzos.flingswipe.SwipeFlingAdapterView
         android:id="@+id/cardContainer"
-        android:background="#fafafa"
         android:layout_width="match_parent"
+        android:background="@color/plask_status"
         android:layout_height="match_parent"
         app:rotation_degrees="15"
         app:max_visible="3"

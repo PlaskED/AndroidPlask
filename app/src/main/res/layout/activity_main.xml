@@ -4,7 +4,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/plask_white">
+    android:background="@color/plask_status">
 
     <FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -21,7 +21,7 @@
         android:layout_width="250dp"
         android:layout_height="match_parent"
         android:layout_gravity="left|start"
-        android:background="@color/plask_status"
+        android:background="@color/plask_card"
         android:theme="@style/PlaskTheme"
         android:textFilterEnabled="true" />
 

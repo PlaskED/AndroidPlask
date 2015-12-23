@@ -8,11 +8,10 @@
 
     <com.lorentzos.flingswipe.SwipeFlingAdapterView
     android:id="@+id/cardContainer"
-    android:background="#fafafa"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:rotation_degrees="15"
-    app:max_visible="3"
+    app:max_visible="4"
     app:min_adapter_stack="5"/>
 
     <android.support.design.widget.FloatingActionButton
