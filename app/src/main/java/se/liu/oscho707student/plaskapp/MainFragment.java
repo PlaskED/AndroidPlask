@@ -9,37 +9,31 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class MainFragment extends android.support.v4.app.Fragment {
     private RequestQueue queue;
     private PostObjectAdapter arrayAdapter;
+    private HashMap<String, Boolean> settings = new HashMap<>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_main, container, false);
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         queue = Volley.newRequestQueue(getContext());
-
+        settings = ((MainActivity) getActivity()).getSettings();
         final SwipeFlingAdapterView cardFrame = (SwipeFlingAdapterView) view.findViewById(R.id.cardContainer);
         final ArrayList<PostObject> posts = new ArrayList<PostObject>();
         arrayAdapter = new PostObjectAdapter(getActivity(), posts);
@@ -70,13 +64,16 @@ public class MainFragment extends android.support.v4.app.Fragment {
                                        @Override
                                        public void onAdapterAboutToEmpty(int itemsInAdapter) {
                                            // Ask for more data here
-
-                                           //Settings for All/Local/Top-posts should be checked here and then add data accordingly
-                                           //((MainActivity) getActivity()).getAllData(queue, arrayAdapter);
-
-                                           //if-sats som kollar om lokala poster är inställt
-                                           initiateRequest();
-
+                                           if (settings.get("all").booleanValue()) {
+                                               ((MainActivity) getActivity()).getAllData(queue, arrayAdapter);
+                                           } else {
+                                               if (settings.get("top").booleanValue()) {
+                                                   ((MainActivity) getActivity()).getTopData(queue, arrayAdapter);
+                                               }
+                                               if (settings.get("local").booleanValue()) {
+                                                   initiateRequest();
+                                               }
+                                           }
                                        }
 
                                        @Override

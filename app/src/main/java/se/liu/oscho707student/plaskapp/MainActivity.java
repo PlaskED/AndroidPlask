@@ -33,7 +33,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout menuLayout;
     private String activityTitle;
     private LocationManager locationManager;
+    private HashMap<String, Boolean> settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +56,15 @@ public class MainActivity extends AppCompatActivity {
         setupMenu();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+        settings = new HashMap<String, Boolean>();
+        initSettings();
 
         android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fm_t = fm.beginTransaction();
         fm_t.add(R.id.mainView, new MainFragment());
         fm_t.commit();
 
-        sendRequest(10); //Initiate GPS request and setup listener depending on result
+        sendRequest(10); //Initiate GPS request and setup listener
 
     }
 
@@ -86,6 +88,20 @@ public class MainActivity extends AppCompatActivity {
         public void onStatusChanged(String provider, int status, Bundle extras) {
         }
     };
+
+    public void initSettings() {
+        settings.put("all", true);
+        settings.put("top", true);
+        settings.put("local", true);
+    }
+
+    public void switchKey(String key, Boolean val) {
+        settings.put(key, val);
+    }
+
+    public HashMap<String, Boolean> getSettings() {
+        return settings;
+    }
 
     public void sendRequest(int reqCode) {
         if (ContextCompat.checkSelfPermission(this,
@@ -211,14 +227,12 @@ public class MainActivity extends AppCompatActivity {
     public void getAllData(RequestQueue queue, final PostObjectAdapter arr) {
         JSONObject json;
         String url = "http://128.199.43.215:3000/api/getall";
-
         JsonArrayRequest jsonRequest = new JsonArrayRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
                             JSONArray res = response;
-                            //Log.d("res", response.toString());
                             for (int n = 0 ; n < response.length() ; n++) {
                                 PostObject data = new PostObject(res.getJSONObject(n));
                                 arr.add(data);
@@ -248,7 +262,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONArray response) {
                         try {
                             JSONArray res = response;
-                            //Log.d("res", response.toString());
                             PostObject data = new PostObject(res.getJSONObject(0));
                             arr.add(data);
 
@@ -289,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
         queue.add(req);
     }
 
-    public void getTopData(RequestQueue queue, final PostObjectListAdapter arr, final SwipeRefreshLayout swipeLayout) {
+    public void getTopList(RequestQueue queue, final PostObjectListAdapter arr, final SwipeRefreshLayout swipeLayout) {
         JSONObject json;
         String url = "http://128.199.43.215:3000/api/popular";
 
@@ -299,10 +312,8 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONArray response) {
                         try {
                             JSONArray res = response;
-                            //Log.d("res", response.toString());
                             arr.clear();
                             for (int n = 0 ; n < response.length() ; n++) {
-                                //Log.d("res", response.getJSONObject(n).toString());
                                 PostObject data = new PostObject(res.getJSONObject(n));
                                 if (data.likes > 0) {
                                     arr.add(data);
@@ -321,6 +332,38 @@ public class MainActivity extends AppCompatActivity {
                         error.printStackTrace();
                     }
                 });
+        queue.add(jsonRequest);
+    }
+
+    public void getTopData(RequestQueue queue, final PostObjectAdapter arr) {
+        JSONObject json;
+        String url = "http://128.199.43.215:3000/api/popular";
+
+        JsonArrayRequest jsonRequest = new JsonArrayRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            JSONArray res = response;
+                            arr.clear();
+                            for (int n = 0 ; n < response.length() ; n++) {
+                                PostObject data = new PostObject(res.getJSONObject(n));
+                                if (data.likes > 0) {
+                                    arr.add(data);
+                                }
+                            }
+                        } catch (JSONException e) {
+                            Log.d("Exception", e.toString());
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                });
+        arr.notifyDataSetChanged();
         queue.add(jsonRequest);
     }
 

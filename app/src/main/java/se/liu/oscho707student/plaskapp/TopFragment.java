@@ -29,11 +29,11 @@ public class TopFragment extends android.support.v4.app.Fragment {
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                ((MainActivity) getActivity()).getTopData(queue, arr, swipeLayout);
+                ((MainActivity) getActivity()).getTopList(queue, arr, swipeLayout);
             }
         });
 
-        ((MainActivity)getActivity()).getTopData(queue, arr, swipeLayout);
+        ((MainActivity)getActivity()).getTopList(queue, arr, swipeLayout);
 
         ListView lw = (ListView) view.findViewById(R.id.topList);
 
@@ -61,10 +61,6 @@ public class TopFragment extends android.support.v4.app.Fragment {
         lw.setAdapter(arr);
 
         return view;
-    }
-
-    public void getPopular(RequestQueue queue, final PostObjectListAdapter arr, SwipeRefreshLayout swipeLayout) {
-        ((MainActivity)getActivity()).getTopData(queue, arr, swipeLayout);
     }
 
 
