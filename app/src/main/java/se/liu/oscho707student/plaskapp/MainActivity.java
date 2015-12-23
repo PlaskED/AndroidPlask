@@ -2,6 +2,7 @@ package se.liu.oscho707student.plaskapp;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.location.Location;
@@ -90,9 +91,13 @@ public class MainActivity extends AppCompatActivity {
     };
 
     public void initSettings() {
-        settings.put("all", true);
-        settings.put("top", true);
-        settings.put("local", true);
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        boolean settingAll = sharedPref.getBoolean("all", true);
+        boolean settingTop = sharedPref.getBoolean("top", true);
+        boolean settingLocal = sharedPref.getBoolean("local", true);
+        settings.put("all", settingAll);
+        settings.put("top", settingTop);
+        settings.put("local", settingLocal);
     }
 
     public void switchKey(String key, Boolean val) {
@@ -393,6 +398,17 @@ public class MainActivity extends AppCompatActivity {
                 });
         arr.notifyDataSetChanged();
         queue.add(jsonRequest);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("all", settings.get("all").booleanValue());
+        editor.putBoolean("top", settings.get("top").booleanValue());
+        editor.putBoolean("local", settings.get("local").booleanValue());
+        editor.commit();
     }
 
 }
