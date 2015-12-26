@@ -1,0 +1,8 @@
+Här bygger du din lista med 5 primära vetenskapliga akademiska referenser.
+
+Literaturen ska ha med affärsmodeller för mjukvara som licens, subscription, freemium. Mest intressant för kusen är freemium men målet är att förstå mer om hur vår deign påverkas av affärsmodellen.
+
+Skiv ett stycke om vad du kan använda kunskapen i pappret till när du bygger
+appar. Bedöm trovärdigheten i källan. På vilket sätt är källa stark/svag som stöd i en argumentation.
+
+Använd korrekt format på referenser enligt någon standard.
