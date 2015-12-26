@@ -231,7 +231,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void getAllData(RequestQueue queue, final PostObjectAdapter arr) {
         JSONObject json;
-        String url = "http://128.199.43.215:3000/api/getall";
+        String lastpid;
+        if(!arr.isEmpty()) {
+            lastpid = (arr.getItem(arr.getCount()-1).pid).toString();
+        }
+        else {
+            lastpid = "0";
+        }
+        String url = "http://128.199.43.215:3000/api/getall/"+lastpid;
+        //String url = "http://127.0.0.1:3000/api/getall/"+lastpid;
         JsonArrayRequest jsonRequest = new JsonArrayRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
                     @Override

@@ -98,6 +98,7 @@ public class PostFragment extends android.support.v4.app.Fragment {
 
     public static void sendPost(final RequestQueue queue, final String text, final String lat, final String lng) {
         String url = "http://128.199.43.215:3000/api/add";
+        //String url = "http://127.0.0.1:3000/api/add";
         Map jsonmap = new HashMap<String, String>();
         jsonmap.put("text",text);
         jsonmap.put("lat",lat);
