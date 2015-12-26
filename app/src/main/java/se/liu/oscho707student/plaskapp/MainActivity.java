@@ -76,8 +76,6 @@ public class MainActivity extends AppCompatActivity {
                     ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             }
             locationManager.removeUpdates(this);
-            Log.d("lat: ", "" + location.getLatitude());
-            Log.d("lng: ", "" + location.getLongitude());
         }
 
         public void onProviderDisabled(String provider) {
@@ -95,9 +93,11 @@ public class MainActivity extends AppCompatActivity {
         boolean settingAll = sharedPref.getBoolean("all", true);
         boolean settingTop = sharedPref.getBoolean("top", true);
         boolean settingLocal = sharedPref.getBoolean("local", true);
+        boolean settingDefault = sharedPref.getBoolean("default", true);
         settings.put("all", settingAll);
         settings.put("top", settingTop);
         settings.put("local", settingLocal);
+        settings.put("default", settingLocal);
     }
 
     public void switchKey(String key, Boolean val) {
@@ -408,6 +408,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putBoolean("all", settings.get("all").booleanValue());
         editor.putBoolean("top", settings.get("top").booleanValue());
         editor.putBoolean("local", settings.get("local").booleanValue());
+        editor.putBoolean("default", settings.get("default").booleanValue());
         editor.commit();
     }
 

@@ -26,6 +26,8 @@ public class FilterFragment extends android.support.v4.app.Fragment  {
         switchTop.setChecked(settings.get("top").booleanValue());
         Switch switchLocal = (Switch) view.findViewById(R.id.switchLocal);
         switchLocal.setChecked(settings.get("local").booleanValue());
+        Switch switchDefault = (Switch) view.findViewById(R.id.switchDefault);
+        switchDefault.setChecked(settings.get("default").booleanValue());
 
         switchAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -44,6 +46,13 @@ public class FilterFragment extends android.support.v4.app.Fragment  {
         switchLocal.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 ((MainActivity) getActivity()).switchKey("local", isChecked);
+                settings = ((MainActivity) getActivity()).getSettings();
+            }
+        });
+
+        switchDefault.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                ((MainActivity) getActivity()).switchKey("default", isChecked);
                 settings = ((MainActivity) getActivity()).getSettings();
             }
         });
