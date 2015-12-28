@@ -51,14 +51,18 @@ public class MainFragment extends android.support.v4.app.Fragment {
 
                                        @Override
                                        public void onLeftCardExit(Object dataObject) {
-                                           PostObject jsondata = (PostObject) dataObject;
-                                           MainActivity.ratePost(queue, jsondata, "down");
+                                           if (((MainActivity) getActivity()).isLoggedIn()) {
+                                               PostObject jsondata = (PostObject) dataObject;
+                                               MainActivity.ratePost(queue, jsondata, "down");
+                                           }
                                        }
 
                                        @Override
                                        public void onRightCardExit(Object dataObject) {
-                                           PostObject jsondata = (PostObject) dataObject;
-                                           MainActivity.ratePost(queue, jsondata, "up");
+                                           if (((MainActivity) getActivity()).isLoggedIn()) {
+                                               PostObject jsondata = (PostObject) dataObject;
+                                               MainActivity.ratePost(queue, jsondata, "up");
+                                           }
                                        }
 
                                        @Override

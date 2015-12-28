@@ -33,7 +33,6 @@
         android:layout_alignParentStart="false"
         android:checked="true"
         android:textStyle="bold"
-        android:layout_alignTop="@+id/settingTitle"
         android:layout_alignParentTop="false"
         android:layout_alignWithParentIfMissing="false"
         android:layout_centerInParent="true"
@@ -41,7 +40,7 @@
         android:elegantTextHeight="false"
         android:allowUndo="false"
         android:padding="10dp"
-        android:layout_marginTop="60dp" />
+        android:layout_below="@+id/switchAll" />
 
     <Switch
         android:layout_width="wrap_content"
@@ -60,28 +59,29 @@
         android:padding="10dp"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/switchAll" />
+        android:layout_below="@+id/switchLocal" />
 
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="75dp"
         android:text="All"
         android:id="@+id/switchAll"
+        android:layout_alignTop="@+id/settingTitle"
+        android:layout_alignParentTop="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:textSize="30dp"
         android:textColor="@color/plask_white"
         android:singleLine="false"
         android:checked="true"
         android:textStyle="bold"
-        android:layout_alignWithParentIfMissing="false"
         android:switchPadding="5dp"
         android:elegantTextHeight="false"
         android:allowUndo="false"
         android:padding="10dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/switchLocal" />
+        android:layout_marginTop="50dp" />
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="75dp"
@@ -99,7 +99,6 @@
         android:allowUndo="false"
         android:padding="10dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
         android:layout_below="@+id/switchToplist" />
 
 </RelativeLayout>

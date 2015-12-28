@@ -1,14 +1,9 @@
 <resources>
     <string name="app_name">Plaskapp</string>
-
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="menu_open">Open Menu</string>
     <string name="menu_close">Close Menu</string>
-    <string name="post_text">write something</string>
+    <string name="post_text">Write Something</string>
     <string name="post_button">Post</string>
-
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
