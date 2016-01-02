@@ -6,3 +6,12 @@ Skiv ett stycke om vad du kan använda kunskapen i pappret till när du bygger
 appar. Bedöm trovärdigheten i källan. På vilket sätt är källa stark/svag som stöd i en argumentation.
 
 Använd korrekt format på referenser enligt någon standard.
+
+------------------------------
+
+
+
+Kumar, Vineet. "Making" freemium" work." Harvard business review 92.5 (2014): 27-29.
+http://web.b.ebscohost.com.e.bibl.liu.se/ehost/detail/detail?sid=5a010cd8-5e4c-4cf4-8a76-39ed0d5213d6%40sessionmgr113&vid=0&hid=107&bdata=JnNpdGU9ZWhvc3QtbGl2ZQ%3d%3d#AN=95639003&db=buh
+
+Artikeln behandlar frågor som den anser att att freemium tjänster bör noggrant överväga för att bli framgångsrika. Till exempel balansen mellan vad som ska vara gratis och finnas för de som betalar. Detta är viktigt att ta hänsyn till när jag själv bygger appar om jag tänker använda en freemium modell. Även förslagen hur man kan balansera funktioner är bra, till exempel om många använder appen och få köper den så kanske för mycket finns i gratisversionen och det måste skäras ner. Eller om få använder gratisversionen kanske den helt enkelt inte erbjuder tillräckligt och fler funktioner måste erbjudas gratis. Källan är stark eftersom den är publicerad av en professor på Harvard och innefattar riktiga exempel av freemiumtjänster för att stödja sin argumentation.
