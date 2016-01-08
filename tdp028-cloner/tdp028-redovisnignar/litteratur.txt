@@ -9,9 +9,35 @@ Använd korrekt format på referenser enligt någon standard.
 
 ------------------------------
 
-
-
 Kumar, Vineet. "Making" freemium" work." Harvard business review 92.5 (2014): 27-29.
 http://web.b.ebscohost.com.e.bibl.liu.se/ehost/detail/detail?sid=5a010cd8-5e4c-4cf4-8a76-39ed0d5213d6%40sessionmgr113&vid=0&hid=107&bdata=JnNpdGU9ZWhvc3QtbGl2ZQ%3d%3d#AN=95639003&db=buh
 
 Artikeln behandlar frågor som den anser att att freemium tjänster bör noggrant överväga för att bli framgångsrika. Till exempel balansen mellan vad som ska vara gratis och finnas för de som betalar. Detta är viktigt att ta hänsyn till när jag själv bygger appar om jag tänker använda en freemium modell. Även förslagen hur man kan balansera funktioner är bra, till exempel om många använder appen och få köper den så kanske för mycket finns i gratisversionen och det måste skäras ner. Eller om få använder gratisversionen kanske den helt enkelt inte erbjuder tillräckligt och fler funktioner måste erbjudas gratis. Källan är stark eftersom den är publicerad av en professor på Harvard och innefattar riktiga exempel av freemiumtjänster för att stödja sin argumentation.
+
+------------------------------
+
+Choudhary, Vidyanand. "Software as a service: Implications for investment in software development." System Sciences, 2007. HICSS 2007. 40th Annual Hawaii International Conference on. IEEE, 2007.
+http://www.computer.org/csdl/proceedings/hicss/2007/2755/00/27550209a.pdf
+
+Licens- och subscriptionmodeller jämförs och det finns en tydlig indikation att subscriptionstjänster får mer kontinuerlig investering och därmed utvecklas mer. Detta innebär även att kvalitén på subscriptionstjänster generellt blir bättre över tid än de med licens. Artikeln är från 2007 så det är möjligt att den inte är lika relevant i dagens läge. Vetskapen om skillnaden är bra att veta, till exempel att en subscriptionmodell kräver regelbunden investering i utvecklingen.
+
+------------------------------
+
+Semenzin, Davide, et al. "Differentiation in Freemium: Where Does the Line Lie?." Software Business. Springer Berlin Heidelberg, 2012. 291-296.
+http://link.springer.com.e.bibl.liu.se/chapter/10.1007/978-3-642-30746-1_27#page-1
+
+Högst relevant då den behandlar olika former av freemium som finns. Cloudlagring är till exempel en säker form av freemiumtjänst då det funkar att erbjuda en begränsad mängd lagring utan extra funktioner och endå få användare. Det är även lätt att justera gratistjänsten beroende på marknaden om det är till exempel lagring som erbjuds. Vad som är går att lära sig här är att det inte finns en konkret modell för vad din app ska erbjuda gratis, man måste ta hänsyn till marknaden och justera sin freemiummodell därefter. Källan tar relevanta exempel och statistik för att stödja sin argumentation, därav en stark källa.
+
+------------------------------
+
+Choi, Hoon Seok, Yoris A. Au, and Charles Z. Liu. "Are Free Apps the New Solution to Software Piracy? The Impact of the Freemium Strategy on Mobile App Piracy in the Presence of Network Effects." (2014).
+http://business.utsa.edu/WPS/IS/0011ISCS-673-2014.pdf
+
+Hur motverkar man piratkopiering av sin app? Artikeln är under konstruktion och har ingen konkret slutsats än. Däremot finns det indikationer av hur freemium kan vara en lösning om piratkopiering är ett problem. Appar som har sociala funktioner och är freemium är mer resistena mot piratkopiering då de inte är beroende av att folk köper appen lika mycket. Det kan även vara så att användare inte ser det nödvändigt att piratkopiera om appen redan erbjuder tillräckligt i gratisversionen. Källan är inte en fullständig studie, så kan inte ses som en stark. Däremot kan man ha studien i åtanke när man väljer hur appen ska använda freemiummodellen.
+
+------------------------------
+
+Hung, Jay. "Economic essentials of online publishing with associated trends and patterns." Publishing Research Quarterly 26.2 (2010): 79-95.
+http://link.springer.com.e.bibl.liu.se/article/10.1007/s12109-010-9158-3/fulltext.html
+
+Tjänster med inkomster från reklam är mer lönsamma, därav blir det viktigt att ge bra första intryck på din tjänst eftersom du vill visa så mycket reklam som möjligt. Desto bättre du förstår de olika typerna av inkomster en tjänst kan generera desto lättare blir det att förstå marknaden menar studien också. Källan är stark men studien är 6 år gammal, mycket kan ha ändrats och slutsatser av liknande studie kanske inte hade varit likadana idag.
