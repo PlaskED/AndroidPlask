@@ -34,12 +34,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -76,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private View nameView;
     private ArrayList<String> optionArray;
     private boolean signedOn = false;
+    private static String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,6 +167,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         return settings;
     }
 
+    public static String getToken() { return token; }
+
     public void sendRequest(int reqCode) {
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -197,7 +202,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
             String uri = acct.getPhotoUrl().toString();
             String url = uri.substring(0, uri.length() - 2) + 400;
+            token = acct.getIdToken();
             new LoadProfileImage().execute(url);
+
+            RequestQueue queue = Volley.newRequestQueue(this);
+            authToken(queue);
 
             updateUI(true);
         } else {
@@ -410,7 +419,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     }
 
     public void getAllData(RequestQueue queue, final PostObjectAdapter arr) {
-        JSONObject json;
         String lastpid;
         if(!arr.isEmpty()) {
             lastpid = (arr.getItem(arr.getCount()-1).pid).toString();
@@ -440,13 +448,21 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     public void onErrorResponse(VolleyError error) {
                         error.printStackTrace();
                     }
-                });
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("token", getToken() );
+                return headers;
+            }
+
+        };
+
         arr.notifyDataSetChanged();
         queue.add(jsonRequest);
     }
 
     public void getPost(RequestQueue queue, final PostObjectAdapter arr, final int pid) {
-        JSONObject json;
         String url = "http://128.199.43.215:3000/api/getpost/"+pid;
 
         JsonArrayRequest jsonRequest = new JsonArrayRequest
@@ -489,6 +505,36 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("token", getToken() );
+                return headers;
+            }
+
+        };
+
+        queue.add(req);
+    }
+
+    public void authToken(final RequestQueue queue) {
+        String url = "http://128.199.43.215:3000/api/auth";
+        //Log.d("id_token", ":"+token);
+        Map jsonmap = new HashMap<String, String>();
+        jsonmap.put("id_token", token);
+        JSONObject jsonBody = new JSONObject(jsonmap);
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, jsonBody ,new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d("res",":"+response);
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //Log.d("err",":"+error);
             }
         });
 

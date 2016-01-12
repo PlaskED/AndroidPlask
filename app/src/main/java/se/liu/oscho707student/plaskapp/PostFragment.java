@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -42,7 +43,13 @@ public class PostFragment extends android.support.v4.app.Fragment {
             public void onClick(View v) {
                 String postText = ((EditText) getView().findViewById(R.id.postText)).getText().toString();
                 if (postText.length() >= 3) {
-                    initiateRequest();
+                    if ( ((MainActivity) getActivity()).isLoggedIn() ) {
+                        initiateRequest();
+                    }
+                    else {
+                        Toast toast = Toast.makeText(getActivity().getApplicationContext(), "Must be signed in.", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
                 }
                 else {
                     Toast toast = Toast.makeText(getActivity().getApplicationContext(), "Atleast 3 characters.", Toast.LENGTH_SHORT);
@@ -96,15 +103,15 @@ public class PostFragment extends android.support.v4.app.Fragment {
         }
     }
 
-    public static void sendPost(final RequestQueue queue, final String text, final String lat, final String lng) {
+    public void sendPost(final RequestQueue queue, final String text, final String lat, final String lng) {
         String url = "http://128.199.43.215:3000/api/add";
         //String url = "http://127.0.0.1:3000/api/add";
         Map jsonmap = new HashMap<String, String>();
-        jsonmap.put("text",text);
-        jsonmap.put("lat",lat);
-        jsonmap.put("lng",lng);
+        jsonmap.put("text", text);
+        jsonmap.put("lat", lat);
+        jsonmap.put("lng", lng);
         JSONObject jsonBody = new JSONObject(jsonmap);
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, jsonBody ,new Response.Listener<JSONObject>() {
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
@@ -114,7 +121,17 @@ public class PostFragment extends android.support.v4.app.Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
             }
-        });
+
+
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("token", ((MainActivity) getActivity()).getToken() );
+                return headers;
+            }
+
+        };
         queue.add(req);
     }
 
