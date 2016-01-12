@@ -1,0 +1,51 @@
+{
+  "project_info": {
+    "project_id": "plaskapp",
+    "project_number": "903897751193",
+    "name": "Plaskapp"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:903897751193:android:1640cab9d9c15f0b",
+        "client_id": "android:se.liu.oscho707student.plaskapp",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "se.liu.oscho707student.plaskapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "903897751193-j19ocp53tf6jdck8ucsq2assu1ebk7je.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "se.liu.oscho707student.plaskapp",
+            "certificate_hash": "80DA872340F2D0056B2A8F38A0D8CDC426A38EA4"
+          }
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 2
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}
