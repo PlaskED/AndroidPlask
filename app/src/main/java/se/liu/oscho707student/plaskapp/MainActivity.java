@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestProfile()
-                .requestIdToken("903897751193-ribbhe2r2st90dd7knapnjq2tsesfh8g.apps.googleusercontent.com")
+                .requestIdToken("just some google token...")
                 .build();
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
